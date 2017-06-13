@@ -1,7 +1,16 @@
-# Storybook Apollo Graphql Addon
+<p align="center">
+    <h3 align="center">Storybook Apollo Graphql addon</h3>
+    <p align="center">Test your Apollo graphql components with offline graphql server<p>
+    <p align="center">
+        <a href="https://www.npmjs.com/package/storybook-addon-apollo-graphql"><img src="https://img.shields.io/npm/dt/storybook-addon-apollo-graphql.svg" alt="Npm download"></a>
+        <a href="https://www.npmjs.com/package/storybook-addon-apollo-graphql"><img src="https://img.shields.io/npm/v/storybook-addon-apollo-graphql.svg" alt="Npm version"></a>
+        <a href="https://www.npmjs.com/package/storybook-addon-apollo-graphql"><img src="https://img.shields.io/circleci/project/github/alexandrebodin/storybook-addon-apollo-graphql.svg" alt="Circle CI status"></a>
+    </p>
+</p>
 
-Storybook Apollo Graphql Addon will allow testing Apollo components with offline graphql server. See [Examples](example/)
+## Examples
 
+See [Examples here](example/)
 
 ## Usage
 
