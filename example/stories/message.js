@@ -17,7 +17,7 @@ const schema = `
 `;
 
 const root = {
-  message: id => ({
+  message: ({ id }) => ({
     id: 1,
     content: 'My StoryBook Content test',
     author: 'My author content',

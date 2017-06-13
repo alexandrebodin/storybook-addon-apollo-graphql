@@ -10,9 +10,13 @@
     "build": "babel src -d dist",
     "build:dev": "babel src -d dist -w",
     "storybook": "start-storybook -p 9009 -c ./example/.storybook",
-    "lint:js": "eslint ."
+    "lint:js": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "jest __tests__",
+    "test:dev": "jest __tests__ --watch"
   },
   "devDependencies": {
+    "@storybook/addon-storyshots": "3.1.2",
     "@storybook/react": "3.1.3",
     "babel-cli": "6.24.1",
     "babel-eslint": "7.2.3",
@@ -25,6 +29,7 @@
     "eslint-plugin-prettier": "2.1.1",
     "eslint-plugin-react": "7.0.1",
     "prettier": "1.4.4",
+    "react-test-renderer": "15.5.4",
     "rimraf": "2.6.1"
   },
   "dependencies": {

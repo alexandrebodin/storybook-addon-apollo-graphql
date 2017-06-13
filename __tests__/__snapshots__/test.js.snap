@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Message A message query 1`] = `
+<div>
+   - 
+</div>
+`;
+
+exports[`Storyshots Mutation A mutation component 1`] = `
+<button
+  onClick={[Function]}
+>
+  Click to mutate
+</button>
+`;
+
+exports[`Storyshots Random Number A random number query 1`] = `<div />`;
