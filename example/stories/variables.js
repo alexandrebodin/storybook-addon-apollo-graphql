@@ -107,10 +107,7 @@ export default () => {
   storiesOf('Variables', module)
     .addDecorator(withApolloProvider({ schema, root }))
     .addDecorator(withKnobs)
-    .add('List of messages', () => {
-      console.log('azad');
-      return <List />;
-    })
+    .add('List of messages', () => <List />)
     .add('Mutation of messages', () => {
       const id = number('ID', 1);
       const content = text('Content', 'Hello');
