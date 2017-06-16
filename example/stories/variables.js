@@ -1,3 +1,7 @@
+/**
+ * Example combining graphql Component with Knobs live editor
+ */
+
 import React from 'react';
 import Message from './components/Message';
 import { storiesOf } from '@storybook/react';
@@ -40,8 +44,9 @@ const messages = {
 const root = {
   messages: () => Object.values(messages),
   updateMessage: ({ id, input }) => {
-    messages[id] = Object.assign(messages[id] || { id }, input);
-    return messages[id];
+    const intId = parseInt(id, 10);
+    messages[intId] = Object.assign({}, messages[intId] || { id: intId }, input);
+    return messages[intId];
   },
 };
 
@@ -87,7 +92,10 @@ const Component = ({ mutate, id }) => {
   return <button onClick={mutate}>Click to mutate message n°{id}</button>;
 };
 const ComponentWithMutation = graphql(mutation, {
-  options: ({ id, content, author }) => ({ variables: { id, content, author } }),
+  options: ({ id, content, author }) => ({
+    variables: { id, content, author },
+    refetchQueries: [{ query }],
+  }),
 })(Component);
 
 /**
@@ -99,7 +107,10 @@ export default () => {
   storiesOf('Variables', module)
     .addDecorator(withApolloProvider({ schema, root }))
     .addDecorator(withKnobs)
-    .add('List of messages', () => <List />)
+    .add('List of messages', () => {
+      console.log('azad');
+      return <List />;
+    })
     .add('Mutation of messages', () => {
       const id = number('ID', 1);
       const content = text('Content', 'Hello');

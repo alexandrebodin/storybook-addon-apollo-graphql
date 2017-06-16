@@ -1,6 +1,9 @@
 <p align="center">
+    <p align="center">
+        <img width="100" src="storybook-apollo.png" alt="logo">
+    </p>
     <h3 align="center">Storybook Apollo Graphql addon</h3>
-    <p align="center">Test your Apollo graphql components with offline graphql server<p>
+    <p align="center"><em>Test your Apollo graphql components with an offline graphql server</em><p>
     <p align="center">
         <a href="https://www.npmjs.com/package/storybook-addon-apollo-graphql"><img src="https://img.shields.io/npm/dt/storybook-addon-apollo-graphql.svg" alt="Npm download"></a>
         <a href="https://www.npmjs.com/package/storybook-addon-apollo-graphql"><img src="https://img.shields.io/npm/v/storybook-addon-apollo-graphql.svg" alt="Npm version"></a>
@@ -8,9 +11,7 @@
     </p>
 </p>
 
-## Examples
-
-See [Examples here](example/)
+![Addon example](screenshot.png)
 
 ## Usage
 
@@ -42,4 +43,18 @@ export default () => {
 };
 ```
 
-> Have a look at [this example](example/stories) stories to learn more about the `withApolloProvider` API.
+## Examples
+
+See [Examples here](example/stories)
+
+## Testing
+
+You can clone and run the demo
+
+```sh
+$ git clone https://github.com/alexandrebodin/storybook-addon-apollo-graphql storybook-addon-apollo-graphql
+$ cd storybook-addon-apollo-graphql
+$ yarn install
+$ yarn storybook
+$ open http://localhost:9009
+```
