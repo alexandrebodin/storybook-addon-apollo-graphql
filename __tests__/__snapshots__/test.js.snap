@@ -15,3 +15,14 @@ exports[`Storyshots Mutation A mutation component 1`] = `
 `;
 
 exports[`Storyshots Random Number A random number query 1`] = `<div />`;
+
+exports[`Storyshots Variables List of messages 1`] = `<div />`;
+
+exports[`Storyshots Variables Mutation of messages 1`] = `
+<button
+  onClick={[Function]}
+>
+  Click to mutate message n°
+  1
+</button>
+`;
