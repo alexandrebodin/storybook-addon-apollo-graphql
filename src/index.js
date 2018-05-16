@@ -1,24 +1,24 @@
 import React from 'react';
-import { ApolloClient, ApolloProvider } from 'react-apollo';
-import { buildSchema, graphql } from 'graphql';
-import { print } from 'graphql/language/printer';
+import { ApolloProvider } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { SchemaLink } from 'apollo-link-schema';
+import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 
-export const withApolloProvider = ({ schema, root }) => {
+export const withApolloProvider = ({ typeDefs, mocks }) => {
+  const schema = makeExecutableSchema({ typeDefs });
+
+  addMockFunctionsToSchema({
+    schema,
+    mocks,
+  });
+
   const client = new ApolloClient({
-    networkInterface: {
-      query: ({ query, variables, operationName }) => {
-        const q = print(query);
-        const s = buildSchema(schema);
-        return graphql(s, q, root, null, variables, operationName);
-      },
-    },
+    link: new SchemaLink({ schema }),
+    cache: new InMemoryCache(),
   });
 
   return storyFn => {
-    return (
-      <ApolloProvider client={client}>
-        {storyFn()}
-      </ApolloProvider>
-    );
+    return <ApolloProvider client={client}>{storyFn()}</ApolloProvider>;
   };
 };

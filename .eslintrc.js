@@ -8,25 +8,16 @@ module.exports = {
   plugins: ['prettier', 'jest', 'react', 'json', 'import'],
   parser: 'babel-eslint',
   parserOptions: {
-    sourceType: 'module',
+    sourceType: 'module'
   },
   env: {
     es6: true,
     node: true,
-    'jest/globals': true,
+    'jest/globals': true
   },
   rules: {
     strict: [error, 'never'],
-    'prettier/prettier': [
-      warn,
-      {
-        printWidth: 100,
-        tabWidth: 2,
-        bracketSpacing: true,
-        trailingComma: 'es5',
-        singleQuote: true,
-      },
-    ],
+    'prettier/prettier': 'error',
     quotes: [warn, 'single'],
     'class-methods-use-this': ignore,
     'arrow-parens': [warn, 'as-needed'],
@@ -36,8 +27,8 @@ module.exports = {
       warn,
       {
         js: 'never',
-        json: 'always',
-      },
+        json: 'always'
+      }
     ],
     'import/no-extraneous-dependencies': [
       warn,
@@ -46,10 +37,10 @@ module.exports = {
           '**/*.test.js',
           '**/scripts/*.js',
           '**/stories/*.js',
-          '**/__tests__/*.js',
+          '**/__tests__/*.js'
         ],
-        peerDependencies: true,
-      },
+        peerDependencies: true
+      }
     ],
     'import/prefer-default-export': ignore,
     'react/jsx-wrap-multilines': ignore,
@@ -61,10 +52,10 @@ module.exports = {
     'react/jsx-filename-extension': [
       warn,
       {
-        extensions: ['.js', '.jsx'],
-      },
+        extensions: ['.js', '.jsx']
+      }
     ],
     'jsx-a11y/accessible-emoji': ignore,
-    'react/no-unescaped-entities': ignore,
-  },
+    'react/no-unescaped-entities': ignore
+  }
 };

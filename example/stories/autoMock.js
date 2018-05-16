@@ -16,18 +16,8 @@ const typeDefs = `
   }
 `;
 
-const mocks = {
-  Query: () => ({
-    message: (ctx, { id }) => ({
-      id: 1,
-      content: 'My StoryBook Content test',
-      author: 'My author content',
-    }),
-  }),
-};
-
 export default () => {
-  storiesOf('Message', module)
-    .addDecorator(withApolloProvider({ typeDefs, mocks }))
-    .add('A message query', () => <Message />);
+  storiesOf('Auto mocking', module)
+    .addDecorator(withApolloProvider({ typeDefs }))
+    .add('Auto mocking', () => <Message />);
 };

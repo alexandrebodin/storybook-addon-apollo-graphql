@@ -7,10 +7,11 @@ import Message from './components/Message';
 import { storiesOf } from '@storybook/react';
 import { withApolloProvider } from '../../src/index';
 import { withKnobs, number, text } from '@storybook/addon-knobs';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 // define your schema
-const schema = `
+const typeDefs = `
   type Message {
     id: Int
     content: String
@@ -41,25 +42,29 @@ const messages = {
 };
 
 // a fake root with getMessages and update/create Messsage
-const root = {
-  messages: () => Object.values(messages),
-  updateMessage: ({ id, input }) => {
-    const intId = parseInt(id, 10);
-    messages[intId] = Object.assign({}, messages[intId] || { id: intId }, input);
-    return messages[intId];
-  },
+const mocks = {
+  Query: () => ({
+    messages: () => Object.values(messages),
+  }),
+  Mutation: () => ({
+    updateMessage: (ctx, { id, input }) => {
+      const intId = parseInt(id, 10);
+      messages[intId] = Object.assign({}, messages[intId] || { id: intId }, input);
+      return messages[intId];
+    },
+  }),
 };
 
 // A component to get the messages
 
 const query = gql`
-query {
+  query {
     messages {
-        id,
-        content,
-        author
+      id
+      content
+      author
     }
-}
+  }
 `;
 
 const List = graphql(query)(({ data: { messages = [] } }) => {
@@ -81,11 +86,11 @@ const List = graphql(query)(({ data: { messages = [] } }) => {
 // a component to udpate or create a message
 
 const mutation = gql`
-mutation ($id: ID! $author: String $content: String) {
-  updateMessage(id: $id input: {author: $author content: $content}) {
-    id
+  mutation($id: ID!, $author: String, $content: String) {
+    updateMessage(id: $id, input: { author: $author, content: $content }) {
+      id
+    }
   }
-}
 `;
 
 const Component = ({ mutate, id }) => {
@@ -99,13 +104,13 @@ const ComponentWithMutation = graphql(mutation, {
 })(Component);
 
 /**
- * You can navigate between the two stories to see how you can add and update the same DB 
+ * You can navigate between the two stories to see how you can add and update the same DB
  * and play arround with your components
  */
 
 export default () => {
   storiesOf('Variables', module)
-    .addDecorator(withApolloProvider({ schema, root }))
+    .addDecorator(withApolloProvider({ typeDefs, mocks }))
     .addDecorator(withKnobs)
     .add('List of messages', () => <List />)
     .add('Mutation of messages', () => {

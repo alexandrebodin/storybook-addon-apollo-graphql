@@ -1,10 +1,12 @@
 import React from 'react';
 import Message from './components/Message';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { withApolloProvider } from '../../src/index';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
-const schema = `
+const typeDefs = `
   type Message {
     id: Int
     content: String
@@ -25,24 +27,26 @@ const schema = `
   }
 `;
 
-const root = {
-  message: () => 1,
-  updateMessage: ({ id, input }) => ({
-    id: 1,
-    content: 'My StoryBook Content test',
-    author: 'My author content',
+const mocks = {
+  Query: () => ({
+    message: () => 1,
+  }),
+  Mutation: () => ({
+    updateMessage: (ctx, { id, input }) => {
+      action('updateMessage')(`message-${id}`);
+    },
   }),
 };
 
 const mutation = gql`
-mutation ($id: ID!) {
-  updateMessage(id: $id input: {author: "bouh" content: "bouh"}) {
-    id
+  mutation($id: ID!) {
+    updateMessage(id: $id, input: { author: "bouh", content: "bouh" }) {
+      id
+    }
   }
-}
 `;
 
-const Component = ({ mutate, id }) => {
+const Component = ({ data, mutate, id }) => {
   return <button onClick={mutate}>Click to mutate</button>;
 };
 const ComponentWithMutation = graphql(mutation, {
@@ -53,6 +57,6 @@ const ComponentWithMutation = graphql(mutation, {
 
 export default () => {
   storiesOf('Mutation', module)
-    .addDecorator(withApolloProvider({ schema, root }))
+    .addDecorator(withApolloProvider({ typeDefs, mocks }))
     .add('A mutation component', () => <ComponentWithMutation id={1} />);
 };

@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Auto mocking Auto mocking 1`] = `
+<div>
+   - 
+</div>
+`;
+
 exports[`Storyshots Message A message query 1`] = `
 <div>
    - 

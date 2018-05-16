@@ -15,6 +15,9 @@
 
 ## Usage
 
+This library uses `graph-tools` to build a schema and mock it.
+For mocking reference read [here](https://www.apollographql.com/docs/graphql-tools/mocking.html#Customizing-mocks)
+
 Create your stories with the `withApolloProvider` API.
 
 ```js
@@ -24,21 +27,29 @@ import { withApolloProvider } from '../../src';
 import { gql, graphql } from 'react-apollo';
 
 const Component = ({ data: { random } }) => <div>{random}</div>;
-const ComponentWithGraphql = graphql(gql`{ random }`)(Component);
+const ComponentWithGraphql = graphql(
+  gql`
+    {
+      random
+    }
+  `
+)(Component);
 
-const schema = `
+const typeDefs = `
     type Query {
         random: Int!
     }
 `;
 
-const root = {
-  random: () => Math.floor(Math.random() * 10),
+const mocks = {
+  Query: () => ({
+    random: () => Math.floor(Math.random() * 10),
+  }),
 };
 
 export default () => {
   storiesOf('Random Number', module)
-    .addDecorator(withApolloProvider({ schema, root }))
+    .addDecorator(withApolloProvider({ typeDefs, mocks }))
     .add('A random number query', () => <ComponentWithGraphql />);
 };
 ```
