@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-apollo-graphql",
-  "version": "0.1.2",
+  "version": "2.0.0",
   "main": "./dist/index.js",
   "repository": "git@github.com:alexandrebodin/storybook-addon-apollo-graphql.git",
   "author": "Alexandre BODIN <bodin.alex@gmail.com>",
