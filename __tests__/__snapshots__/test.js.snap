@@ -32,3 +32,9 @@ exports[`Storyshots Variables Mutation of messages 1`] = `
   1
 </button>
 `;
+
+exports[`Storyshots WithOptions A message 1`] = `
+<div>
+   - 
+</div>
+`;
