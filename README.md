@@ -49,10 +49,15 @@ const mocks = {
 
 export default () => {
   storiesOf('Random Number', module)
-    .addDecorator(withApolloProvider({ typeDefs, mocks }))
+    .addDecorator(withApolloProvider({ typeDefs, mocks, schemaOptions: {}, mockOptions: {} }))
     .add('A random number query', () => <ComponentWithGraphql />);
 };
 ```
+
+You can optionnaly pass extra options:
+
+- `schemaOptions` (passes options to `makeExecutableSchema`) [link](https://www.apollographql.com/docs/apollo-server/v2/api/graphql-tools.html#makeExecutableSchema)
+- `mockOptions` (passes options to `addMockFunctionsToSchema`) [link](https://www.apollographql.com/docs/apollo-server/v2/api/graphql-tools.html#addMockFunctionsToSchema)
 
 ## Examples
 
