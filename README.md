@@ -15,7 +15,7 @@
 
 ## Usage
 
-This library uses `graph-tools` to build a schema and mock it.
+This library uses `graphql-tools` to build a schema and mock it.
 For mocking reference read [here](https://www.apollographql.com/docs/graphql-tools/mocking.html#Customizing-mocks)
 
 Create your stories with the `withApolloProvider` API.
