@@ -54,10 +54,12 @@ export default () => {
 };
 ```
 
-You can optionnaly pass extra options:
+You can optionally pass extra options:
 
 - `schemaOptions` (passes options to `makeExecutableSchema`) [link](https://www.apollographql.com/docs/apollo-server/v2/api/graphql-tools.html#makeExecutableSchema)
 - `mockOptions` (passes options to `addMockFunctionsToSchema`) [link](https://www.apollographql.com/docs/apollo-server/v2/api/graphql-tools.html#addMockFunctionsToSchema)
+- `clientResolvers` (passes resolvers to `apollo-link-state`) [link](https://www.apollographql.com/docs/link/links/state.html#resolver)
+- `clientDefaults` (passes defaults to `apollo-link-state`) [link](https://www.apollographql.com/docs/link/links/state.html#default)
 
 ## Examples
 
